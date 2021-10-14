@@ -18,7 +18,7 @@ def train_cpu(dmat):
     params['tree_method'] = 'hist'
     params['objective'] = 'reg:squarederror'
     start = time.time()
-    bst = xgb.train(params, dmat)
+    xgb.train(params, dmat)
     end = time.time()
     return end - start
 
@@ -29,7 +29,7 @@ def train_gpu(dmat):
     params['tree_method'] = 'gpu_hist'
     params['objective'] = 'reg:squarederror'
     start = time.time()
-    bst = xgb.train(params, dmat)
+    xgb.train(params, dmat)
     end = time.time()
     return end - start
 

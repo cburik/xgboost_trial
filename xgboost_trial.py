@@ -41,7 +41,7 @@ def main(n_obs=10000, n_var=50):
     time_cpu = train_cpu(dmat)
     print(time_cpu)
     time_gpu = train_gpu(dmat)
-    print(time_cpu)
+    print(time_gpu)
 
 
 if __name__ == '__main__':

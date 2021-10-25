@@ -1,6 +1,7 @@
 import numpy as np
 import xgboost as xgb
 import time
+from datetime import datetime
 
 
 def simulate_data(n_obs, n_var):
@@ -34,6 +35,16 @@ def train_gpu(dmat):
     return end - start
 
 
+def log(n_obs, n_var, time_cpu, time_gpu):
+    now = datetime.now()
+    fname = now.strftime('xgboost_trial-%Y%m%d-%H%M%S.log')
+    file = open(fname, 'w+')
+    file.write("Model with " + str(n_obs) + " Observations and " + str(n_var)
+               + " variables.")
+    file.write("\nCPU Time: " + str(time_cpu))
+    file.write("\nGPU Time: " + str(time_gpu))
+
+
 def main(n_obs=10000, n_var=50):
     y, X = simulate_data(n_obs, n_var)
     dmat = xgb.DMatrix(X, label=y)
@@ -41,6 +52,7 @@ def main(n_obs=10000, n_var=50):
     print(time_cpu)
     time_gpu = train_gpu(dmat)
     print(time_gpu)
+    log(n_obs, n_var, time_cpu, time_gpu)
 
 
 if __name__ == '__main__':

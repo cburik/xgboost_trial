@@ -15,7 +15,7 @@ def simulate_data(n_obs, n_var):
 
 def train_cpu(dmat):
     # train xgboost on cpu
-    params = {'silent': 1}
+    params = {'verbosity': 1}
     params['tree_method'] = 'hist'
     params['objective'] = 'reg:squarederror'
     start = time.time()
@@ -26,7 +26,7 @@ def train_cpu(dmat):
 
 def train_gpu(dmat):
     # train xgboost on gpu
-    params = {'silent': 1}
+    params = {'verbosity': 1}
     params['tree_method'] = 'gpu_hist'
     params['objective'] = 'reg:squarederror'
     start = time.time()
